@@ -16,10 +16,10 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import org.jetbrains.annotations.NotNull;
 
-public class MotorBlock extends DirectionalKineticBlock implements IBE<MotorBlockEntity> {
+public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<AbstractMotorBlockEntity> {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public MotorBlock(Properties properties) {
+    public AbstractMotorBlock(Properties properties) {
         super(properties);
         registerDefaultState(defaultBlockState().setValue(POWERED, false));
     }
@@ -43,12 +43,12 @@ public class MotorBlock extends DirectionalKineticBlock implements IBE<MotorBloc
     }
 
     @Override
-    public Class<MotorBlockEntity> getBlockEntityClass() {
-        return MotorBlockEntity.class;
+    public Class<AbstractMotorBlockEntity> getBlockEntityClass() {
+        return AbstractMotorBlockEntity.class;
     }
 
     @Override
-    public BlockEntityType<? extends MotorBlockEntity> getBlockEntityType() {
+    public BlockEntityType<? extends AbstractMotorBlockEntity> getBlockEntityType() {
         return Entities.BASIC_MOTOR.get();
     }
 

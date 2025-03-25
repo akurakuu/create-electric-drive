@@ -1,4 +1,4 @@
-package com.akurakuu.createenergydrive.blocks.motor;
+package com.akurakuu.createenergydrive;
 
 import java.util.List;
 

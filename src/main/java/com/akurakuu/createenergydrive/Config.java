@@ -1,6 +1,5 @@
 package com.akurakuu.createenergydrive;
 
-import com.akurakuu.createenergydrive.blocks.motor.MotorTier;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
