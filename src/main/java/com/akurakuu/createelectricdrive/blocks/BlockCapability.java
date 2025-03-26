@@ -1,4 +1,4 @@
-package com.akurakuu.createenergydrive.blocks;
+package com.akurakuu.createelectricdrive.blocks;
 
 import net.neoforged.neoforge.energy.EnergyStorage;
 

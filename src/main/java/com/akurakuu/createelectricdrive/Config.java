@@ -1,4 +1,4 @@
-package com.akurakuu.createenergydrive;
+package com.akurakuu.createelectricdrive;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -10,12 +10,12 @@ import java.util.List;
 
 // An example config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Neo's config APIs
-@EventBusSubscriber(modid = CreateEnergyDrive.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = CreateElectricDrive.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class Config {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
 
     // コンフィグのキーとコメントで使う文字列
-    public static final MotorTier<String> TIERS = new MotorTier<>(
+    public static final TierUtil<String> TIERS = new TierUtil<>(
             "Basic",
             "Enhanced",
             "Advanced",
@@ -67,10 +67,10 @@ public class Config {
 
     // 取得された設定
     public static class motorConfig {
-        public static MotorTier<Integer> producedStress;
-        public static MotorTier<Integer> consumedEnergyBasic;
-        public static MotorTier<Integer> maxCapacityBasic;
-        public static MotorTier<Integer> maxReceiveBasic;
+        public static TierUtil<Integer> producedStress;
+        public static TierUtil<Integer> consumedEnergyBasic;
+        public static TierUtil<Integer> maxCapacityBasic;
+        public static TierUtil<Integer> maxReceiveBasic;
     }
 
 
@@ -82,27 +82,27 @@ public class Config {
         for (ModConfigSpec.IntValue value : PRODUCED_STRESS_CONFIG) {
             list.add(value.get());
         }
-        motorConfig.producedStress = MotorTier.ofList(list);
+        motorConfig.producedStress = TierUtil.ofList(list);
 
         list.clear();
 
         for (ModConfigSpec.IntValue value : CONSUMED_ENERGY_CONFIG) {
             list.add(value.get());
         }
-        motorConfig.consumedEnergyBasic = MotorTier.ofList(list);
+        motorConfig.consumedEnergyBasic = TierUtil.ofList(list);
 
         list.clear();
 
         for (ModConfigSpec.IntValue value : MAX_CAPACITY_CONFIG) {
             list.add(value.get());
         }
-        motorConfig.maxCapacityBasic = MotorTier.ofList(list);
+        motorConfig.maxCapacityBasic = TierUtil.ofList(list);
 
         list.clear();
 
         for (ModConfigSpec.IntValue value : MAX_RECEIVE_CONFIG) {
             list.add(value.get());
         }
-        motorConfig.maxReceiveBasic = MotorTier.ofList(list);
+        motorConfig.maxReceiveBasic = TierUtil.ofList(list);
     }
 }

@@ -1,4 +1,4 @@
-package com.akurakuu.createenergydrive;
+package com.akurakuu.createelectricdrive;
 
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import org.slf4j.Logger;
@@ -11,7 +11,6 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -28,11 +27,11 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
-@Mod(CreateEnergyDrive.MODID)
-public class CreateEnergyDrive
+@Mod(CreateElectricDrive.MODID)
+public class CreateElectricDrive
 {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "create-electric-drive";
+    public static final String MODID = "create_electric_drive";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
@@ -46,18 +45,16 @@ public class CreateEnergyDrive
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
 
-    // Creates a creative tab with the id "create-electric-drive:example_tab" for the example item, that is placed after the combat tab
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.create-electric-drive")) //The language key for the title of your CreativeModeTab
+    // Creates a creative tab with the id "create_electric_drive:example_tab" for the example item, that is placed after the combat tab
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_MODE_TABS.register("create_electric_drive", () -> CreativeModeTab.builder()
+            .title(Component.translatable("itemGroup.create_electric_drive")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
-//            .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
-            .displayItems((parameters, output) -> {
-//                output.accept(EXAMPLE_ITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            }).build());
+            .icon(() -> Blocks.BASIC_MOTOR.asItem().getDefaultInstance())
+            .build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
-    public CreateEnergyDrive(IEventBus modEventBus, ModContainer modContainer)
+    public CreateElectricDrive(IEventBus modEventBus, ModContainer modContainer)
     {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -82,8 +79,8 @@ public class CreateEnergyDrive
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
-        com.akurakuu.createenergydrive.Blocks.register();
-        com.akurakuu.createenergydrive.Entities.register();
+        com.akurakuu.createelectricdrive.Blocks.register();
+        com.akurakuu.createelectricdrive.Entities.register();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -93,7 +90,10 @@ public class CreateEnergyDrive
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {}
+        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
+
+
+        }
 //            event.accept(EXAMPLE_BLOCK_ITEM);
     }
 

@@ -1,6 +1,7 @@
-package com.akurakuu.createenergydrive.blocks.motor;
+package com.akurakuu.createelectricdrive.blocks.motor.abstractmotor;
 
-import com.akurakuu.createenergydrive.Entities;
+import com.akurakuu.createelectricdrive.Entities;
+import com.akurakuu.createelectricdrive.TierUtil;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
 import net.minecraft.core.BlockPos;
@@ -19,8 +20,11 @@ import org.jetbrains.annotations.NotNull;
 public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<AbstractMotorBlockEntity> {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
-    public AbstractMotorBlock(Properties properties) {
+    public final TierUtil.Tier motorTier;
+
+    public AbstractMotorBlock(TierUtil.Tier motorTier, Properties properties) {
         super(properties);
+        this.motorTier = motorTier;
         registerDefaultState(defaultBlockState().setValue(POWERED, false));
     }
 
@@ -37,6 +41,10 @@ public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<A
         }
     }
 
+    public TierUtil.Tier getMotorTier() {
+        return motorTier;
+    }
+
     @Override
     public Direction.Axis getRotationAxis(BlockState state) {
         return state.getValue(FACING).getOpposite().getAxis();
@@ -49,7 +57,7 @@ public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<A
 
     @Override
     public BlockEntityType<? extends AbstractMotorBlockEntity> getBlockEntityType() {
-        return Entities.BASIC_MOTOR.get();
+        return null;
     }
 
     @Override
