@@ -1,6 +1,5 @@
-package com.akurakuu.createelectricdrive.blocks.motor.abstractmotor;
+package com.akurakuu.createelectricdrive.block.motor.abstractmotor;
 
-import com.akurakuu.createelectricdrive.Entities;
 import com.akurakuu.createelectricdrive.TierUtil;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;

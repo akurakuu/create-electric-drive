@@ -1,9 +1,9 @@
-package com.akurakuu.createelectricdrive.blocks.motor;
+package com.akurakuu.createelectricdrive.block.motor;
 
-import com.akurakuu.createelectricdrive.Entities;
+import com.akurakuu.createelectricdrive.Entity;
 import com.akurakuu.createelectricdrive.TierUtil;
-import com.akurakuu.createelectricdrive.blocks.motor.abstractmotor.AbstractMotorBlock;
-import com.akurakuu.createelectricdrive.blocks.motor.abstractmotor.AbstractMotorBlockEntity;
+import com.akurakuu.createelectricdrive.block.motor.abstractmotor.AbstractMotorBlock;
+import com.akurakuu.createelectricdrive.block.motor.abstractmotor.AbstractMotorBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 public class BasicMotorBlock extends AbstractMotorBlock {
@@ -13,6 +13,6 @@ public class BasicMotorBlock extends AbstractMotorBlock {
 
     @Override
     public BlockEntityType<? extends AbstractMotorBlockEntity> getBlockEntityType() {
-        return Entities.BASIC_MOTOR.get();
+        return Entity.BASIC_MOTOR.get();
     }
 }

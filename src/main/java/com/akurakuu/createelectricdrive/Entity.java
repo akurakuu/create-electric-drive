@@ -1,20 +1,19 @@
 package com.akurakuu.createelectricdrive;
 
-import com.akurakuu.createelectricdrive.blocks.motor.*;
-import com.akurakuu.createelectricdrive.blocks.motor.abstractmotor.AbstractMotorBlockEntity;
+import com.akurakuu.createelectricdrive.block.motor.*;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.OrientedRotatingVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 import static com.akurakuu.createelectricdrive.CreateElectricDrive.REGISTRATE;
 
-public class Entities {
+public class Entity {
     public static final BlockEntityEntry<BasicMotorBlockEntity> BASIC_MOTOR = REGISTRATE
             .blockEntity("basic_motor",
                     BasicMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Blocks.BASIC_MOTOR)
+            .validBlocks(Block.BASIC_MOTOR)
             .register();
 
     public static final BlockEntityEntry<EnhancedMotorBlockEntity> ENHANCED_MOTOR = REGISTRATE
@@ -22,7 +21,7 @@ public class Entities {
                     EnhancedMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Blocks.ENHANCED_MOTOR)
+            .validBlocks(Block.ENHANCED_MOTOR)
             .register();
 
     public static final BlockEntityEntry<AdvancedMotorBlockEntity> ADVANCED_MOTOR = REGISTRATE
@@ -30,7 +29,7 @@ public class Entities {
                     AdvancedMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Blocks.ADVANCED_MOTOR)
+            .validBlocks(Block.ADVANCED_MOTOR)
             .register();
 
     public static final BlockEntityEntry<InnovativeMotorBlockEntity> INNOVATIVE_MOTOR = REGISTRATE
@@ -38,7 +37,7 @@ public class Entities {
                     InnovativeMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Blocks.INNOVATIVE_MOTOR)
+            .validBlocks(Block.INNOVATIVE_MOTOR)
             .register();
 
     public static final BlockEntityEntry<UltimateMotorBlockEntity> ULTIMATE_MOTOR = REGISTRATE
@@ -46,7 +45,7 @@ public class Entities {
                     UltimateMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Blocks.ULTIMATE_MOTOR)
+            .validBlocks(Block.ULTIMATE_MOTOR)
             .register();
 
     public static void register() {

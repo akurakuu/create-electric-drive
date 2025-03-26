@@ -1,32 +1,31 @@
-package com.akurakuu.createelectricdrive.blocks;
+package com.akurakuu.createelectricdrive.block;
 
 import net.neoforged.neoforge.energy.EnergyStorage;
 
 public class BlockCapability extends EnergyStorage {
-    public BlockCapability(int capacity) {
-        super(capacity);
-    }
+    private boolean canReceive;
+    private boolean canExtract;
 
-    public BlockCapability(int capacity, int maxTransfer) {
-        super(capacity, maxTransfer);
-    }
-
-    public BlockCapability(int capacity, int maxReceive, int maxExtract) {
+    public BlockCapability(
+            int capacity,
+            int maxReceive,
+            int maxExtract,
+            boolean canReceive,
+            boolean canExtract
+    ) {
         super(capacity, maxReceive, maxExtract);
-    }
-
-    public BlockCapability(int capacity, int maxReceive, int maxExtract, int energy) {
-        super(capacity, maxReceive, maxExtract, energy);
+        this.canReceive = canReceive;
+        this.canExtract = canExtract;
     }
 
     @Override
     public boolean canExtract() {
-        return false;
+        return canExtract;
     }
 
     @Override
     public boolean canReceive() {
-        return true;
+        return canReceive;
     }
 
     @Override

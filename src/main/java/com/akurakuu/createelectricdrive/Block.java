@@ -1,14 +1,13 @@
 package com.akurakuu.createelectricdrive;
 
-import com.akurakuu.createelectricdrive.blocks.motor.*;
-import com.akurakuu.createelectricdrive.blocks.motor.abstractmotor.AbstractMotorBlock;
+import com.akurakuu.createelectricdrive.block.motor.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
 
 import static com.simibubi.create.foundation.data.ModelGen.customItemModel;
 
 import static com.akurakuu.createelectricdrive.CreateElectricDrive.REGISTRATE;
 
-public class Blocks {
+public class Block {
     static {
         REGISTRATE.setCreativeTab(CreateElectricDrive.MAIN_TAB);
     }
@@ -18,7 +17,7 @@ public class Blocks {
                     BasicMotorBlock::new
             )
             .item()
-            .transform(customItemModel())
+            .build()
             .register();
 
     public static final BlockEntry<EnhancedMotorBlock> ENHANCED_MOTOR = REGISTRATE.block(
@@ -27,7 +26,7 @@ public class Blocks {
                     EnhancedMotorBlock::new
             )
             .item()
-            .transform(customItemModel())
+            .build()
             .register();
 
     public static final BlockEntry<AdvancedMotorBlock> ADVANCED_MOTOR = REGISTRATE.block(
@@ -36,7 +35,7 @@ public class Blocks {
                     AdvancedMotorBlock::new
             )
             .item()
-            .transform(customItemModel())
+            .build()
             .register();
 
     public static final BlockEntry<InnovativeMotorBlock> INNOVATIVE_MOTOR = REGISTRATE.block(
@@ -45,7 +44,7 @@ public class Blocks {
                     InnovativeMotorBlock::new
             )
             .item()
-            .transform(customItemModel())
+            .build()
             .register();
 
     public static final BlockEntry<UltimateMotorBlock> ULTIMATE_MOTOR = REGISTRATE.block(
@@ -54,7 +53,7 @@ public class Blocks {
                     UltimateMotorBlock::new
             )
             .item()
-            .transform(customItemModel())
+            .build()
             .register();
 
     public static void register() {

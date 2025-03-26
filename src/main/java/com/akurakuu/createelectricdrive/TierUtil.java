@@ -42,6 +42,16 @@ public record TierUtil<T>(T basic, T enhanced, T advanced, T innovative, T ultim
         );
     }
 
+    public T getFromTier(Tier tier) {
+        return switch (tier) {
+            case Basic -> basic;
+            case Enhanced -> enhanced;
+            case Advanced -> advanced;
+            case Innovative -> innovative;
+            case Ultimate -> ultimate;
+        };
+    }
+
     public enum Tier {
         Basic,
         Enhanced,

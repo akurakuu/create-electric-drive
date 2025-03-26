@@ -1,12 +1,15 @@
 package com.akurakuu.createelectricdrive;
 
+import com.akurakuu.createelectricdrive.capability.Capability;
+import com.akurakuu.createelectricdrive.payload.capability.CapabilityPayload;
 import com.simibubi.create.foundation.data.CreateRegistrate;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -38,9 +41,9 @@ public class CreateElectricDrive
     public static final CreateRegistrate REGISTRATE = CreateRegistrate.create(MODID);
 
     // Create a Deferred Register to hold Blocks which will all be registered under the "examplemod" namespace
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
+//    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     // Create a Deferred Register to hold Items which will all be registered under the "examplemod" namespace
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
+//    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "examplemod" namespace
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
@@ -49,7 +52,7 @@ public class CreateElectricDrive
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_MODE_TABS.register("create_electric_drive", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.create_electric_drive")) //The language key for the title of your CreativeModeTab
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> Blocks.BASIC_MOTOR.asItem().getDefaultInstance())
+            .icon(() -> Block.BASIC_MOTOR.asItem().getDefaultInstance())
             .build());
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
@@ -59,14 +62,13 @@ public class CreateElectricDrive
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        // Register the Deferred Register to the mod event bus so blocks get registered
-        BLOCKS.register(modEventBus);
-        // Register the Deferred Register to the mod event bus so items get registered
-        ITEMS.register(modEventBus);
+//        // Register the Deferred Register to the mod event bus so blocks get registered
+//        BLOCKS.register(modEventBus);
+//        // Register the Deferred Register to the mod event bus so items get registered
+//        ITEMS.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         CREATIVE_MODE_TABS.register(modEventBus);
 
-        REGISTRATE.registerEventListeners(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
@@ -79,8 +81,13 @@ public class CreateElectricDrive
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
 
-        com.akurakuu.createelectricdrive.Blocks.register();
-        com.akurakuu.createelectricdrive.Entities.register();
+        REGISTRATE.registerEventListeners(modEventBus);
+        modEventBus.addListener(RegisterCapabilitiesEvent.class, Capability::registerCapabilities);
+        modEventBus.addListener(RegisterPayloadHandlersEvent.class, CapabilityPayload::register);
+
+        Block.register();
+        Item.register();
+        Entity.register();
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
