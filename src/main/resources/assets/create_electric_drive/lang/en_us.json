@@ -1,0 +1,10 @@
+{
+  "block.create_electric_drive.basic_motor": "Basic Motor",
+  "block.create_electric_drive.advanced_motor": "Advanced Motor",
+  "block.create_electric_drive.innovative_motor": "Innovative Motor",
+  "block.create_electric_drive.ultimate_motor": "Ultimate Motor",
+  "item.create_electric_drive.basic_coil": "Basic Coil",
+  "item.create_electric_drive.advanced_coil": "Advanced Coil",
+  "item.create_electric_drive.innovative_coil": "Innovative Coil",
+  "item.create_electric_drive.ultimate_coil": "Ultimate Coil"
+}

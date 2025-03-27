@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "create_electric_drive:block/ultimate_casing/block"
+    }
+  }
+}
