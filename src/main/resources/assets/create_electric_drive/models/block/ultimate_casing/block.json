@@ -1,0 +1,8 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "create_electric_drive:block/ultimate_casing",
+		"side": "create_electric_drive:block/ultimate_casing"
+	}
+}

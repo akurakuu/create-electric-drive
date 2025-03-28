@@ -1,6 +1,6 @@
 package com.akurakuu.create_electric_drive.block.motor;
 
-import com.akurakuu.create_electric_drive.Entity;
+import com.akurakuu.create_electric_drive.AllEntities;
 import com.akurakuu.create_electric_drive.TierUtil;
 import com.akurakuu.create_electric_drive.block.motor.abstractmotor.AbstractMotorBlock;
 import com.akurakuu.create_electric_drive.block.motor.abstractmotor.AbstractMotorBlockEntity;
@@ -13,6 +13,6 @@ public class UltimateMotorBlock extends AbstractMotorBlock {
 
     @Override
     public BlockEntityType<? extends AbstractMotorBlockEntity> getBlockEntityType() {
-        return Entity.ULTIMATE_MOTOR.get();
+        return AllEntities.ULTIMATE_MOTOR.get();
     }
 }

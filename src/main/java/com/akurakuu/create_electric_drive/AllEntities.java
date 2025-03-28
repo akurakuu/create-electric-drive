@@ -7,13 +7,13 @@ import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 import static com.akurakuu.create_electric_drive.CreateElectricDrive.REGISTRATE;
 
-public class Entity {
+public class AllEntities {
     public static final BlockEntityEntry<BasicMotorBlockEntity> BASIC_MOTOR = REGISTRATE
             .blockEntity("basic_motor",
                     BasicMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Block.BASIC_MOTOR)
+            .validBlocks(AllBlocks.BASIC_MOTOR)
             .register();
 
     public static final BlockEntityEntry<AdvancedMotorBlockEntity> ADVANCED_MOTOR = REGISTRATE
@@ -21,7 +21,7 @@ public class Entity {
                     AdvancedMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Block.ADVANCED_MOTOR)
+            .validBlocks(AllBlocks.ADVANCED_MOTOR)
             .register();
 
     public static final BlockEntityEntry<InnovativeMotorBlockEntity> INNOVATIVE_MOTOR = REGISTRATE
@@ -29,7 +29,7 @@ public class Entity {
                     InnovativeMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Block.INNOVATIVE_MOTOR)
+            .validBlocks(AllBlocks.INNOVATIVE_MOTOR)
             .register();
 
     public static final BlockEntityEntry<UltimateMotorBlockEntity> ULTIMATE_MOTOR = REGISTRATE
@@ -37,7 +37,7 @@ public class Entity {
                     UltimateMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
-            .validBlocks(Block.ULTIMATE_MOTOR)
+            .validBlocks(AllBlocks.ULTIMATE_MOTOR)
             .register();
 
     public static void register() {

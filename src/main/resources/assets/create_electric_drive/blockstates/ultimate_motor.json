@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=south": {
+      "model": "create_electric_drive:block/ultimate_motor/block",
+      "y": 0
+    },
+    "facing=west": {
+      "model": "create_electric_drive:block/ultimate_motor/block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "create_electric_drive:block/ultimate_motor/block",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "create_electric_drive:block/ultimate_motor/block",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "create_electric_drive:block/ultimate_motor/block_vertical"
+    },
+    "facing=down": {
+      "model": "create_electric_drive:block/ultimate_motor/block_vertical",
+      "x": 180
+    }
+  }
+}

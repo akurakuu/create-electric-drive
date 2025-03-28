@@ -1,5 +1,6 @@
 package com.akurakuu.create_electric_drive.block.motor.abstractmotor;
 
+import com.akurakuu.create_electric_drive.CreateElectricDrive;
 import com.akurakuu.create_electric_drive.ShapeUtil;
 import com.akurakuu.create_electric_drive.TierUtil;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
@@ -8,6 +9,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -90,5 +93,22 @@ public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<A
 //                ),
 //                state.getValue(FACING));
         return shape.getShape(state.getValue(FACING));
+    }
+
+    @Override
+    public InteractionResult onWrenched(BlockState state, UseOnContext context) {
+//        CreateElectricDrive.LOGGER.info("onWrenched");
+        return super.onWrenched(state, context);
+//        return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public BlockState updateAfterWrenched(BlockState newState, UseOnContext context) {
+        return super.updateAfterWrenched(newState, context);
+    }
+
+    @Override
+    public InteractionResult onSneakWrenched(BlockState state, UseOnContext context) {
+        return super.onSneakWrenched(state, context);
     }
 }
