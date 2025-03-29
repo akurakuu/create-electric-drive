@@ -1,0 +1,37 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "pattern": [
+    "  S  ",
+    "CPSPC",
+    "CI#IC",
+    "CPWPC",
+    " PPP "
+  ],
+  "key": {
+    "S": {
+      "item": "create:shaft"
+    },
+    "C": {
+      "item": "create:andesite_casing"
+    },
+    "P": {
+      "item": "create:andesite_alloy"
+    },
+    "W": {
+      "item": "create:large_cogwheel"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "#": {
+      "item": "create_electric_drive:basic_coil"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "create_electric_drive:basic_motor"
+  },
+  "show_notification": false
+}

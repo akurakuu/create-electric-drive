@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "create_electric_drive:hot_sturdy_sheet"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_electric_drive:ultimate_sheet"
+    }
+  ]
+}

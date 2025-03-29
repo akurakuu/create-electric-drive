@@ -9,7 +9,7 @@ import static com.akurakuu.create_electric_drive.CreateElectricDrive.REGISTRATE;
 
 public class AllEntities {
     public static final BlockEntityEntry<BasicMotorBlockEntity> BASIC_MOTOR = REGISTRATE
-            .blockEntity("basic_motor",
+            .blockEntity("basic_motor.json",
                     BasicMotorBlockEntity::new
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)

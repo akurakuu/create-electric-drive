@@ -1,0 +1,16 @@
+{
+  "type": "create:item_application",
+  "ingredients": [
+    {
+      "item": "create:brass_casing"
+    },
+    {
+      "item": "create_electric_drive:ultimate_sheet"
+    }
+  ],
+  "results": [
+    {
+      "id": "create_electric_drive:ultimate_casing"
+    }
+  ]
+}

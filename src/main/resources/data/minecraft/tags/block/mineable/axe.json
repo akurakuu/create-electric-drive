@@ -1,0 +1,6 @@
+{
+  "values": [
+    "create_electric_drive:basic_motor",
+    "create_electric_drive:advanced_motor"
+  ]
+}

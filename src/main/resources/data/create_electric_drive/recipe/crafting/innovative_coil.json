@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "create_electric_drive:advanced_coil"
+    },
+    "B": {
+      "item": "create:shaft"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "create_electric_drive:innovative_coil"
+  }
+}

@@ -1,12 +1,19 @@
 package com.akurakuu.create_electric_drive;
 
 import com.akurakuu.create_electric_drive.block.motor.*;
+import com.simibubi.create.content.contraptions.actors.harvester.HarvesterBlock;
+import com.simibubi.create.content.decoration.encasing.CasingBlock;
+import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.SharedProperties;
+import com.simibubi.create.infrastructure.config.CStress;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredHolder;
+
 import static com.simibubi.create.foundation.data.TagGen.axeOnly;
 import static com.simibubi.create.foundation.data.TagGen.axeOrPickaxe;
 import static com.simibubi.create.foundation.data.TagGen.pickaxeOnly;
@@ -59,16 +66,19 @@ public class AllBlocks {
             .transform(pickaxeOnly())
             .item()
             .properties(p -> p.rarity(Rarity.RARE))
-            .transform(customItemModel())
+            .build()
             .register();
 
-    public static final BlockEntry<net.minecraft.world.level.block.Block> ULTIMATE_CASING = REGISTRATE.block(
+    public static final BlockEntry<CasingBlock> ULTIMATE_CASING = REGISTRATE.block(
                     "ultimate_casing",
-                    net.minecraft.world.level.block.Block::new
+                    CasingBlock::new
             )
-            .initialProperties(SharedProperties::netheriteMetal)
+            .initialProperties(SharedProperties::softMetal)
             .transform(pickaxeOnly())
-            .simpleItem()
+            //            .transform(BlockBehaviour::)
+            .item()
+            .properties(p -> p.rarity(Rarity.RARE))
+            .build()
             .register();
 
     public static void register() {

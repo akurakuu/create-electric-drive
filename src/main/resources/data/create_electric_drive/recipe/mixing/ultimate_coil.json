@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "create_electric_drive:ultimate_sheet"
+    },
+    {
+      "item": "create_electric_drive:innovative_coil"
+    }
+  ],
+  "heat_requirement": "superheated",
+  "results": [
+    {
+      "id": "create_electric_drive:ultimate_coil"
+    }
+  ]
+}

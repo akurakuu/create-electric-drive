@@ -77,7 +77,7 @@ public class AbstractMotorBlockEntity extends GeneratingKineticBlockEntity {
     }
 
     public int calculateEnergyConsumption() {
-        return Config.motorConfig.consumedEnergy.getFromTier(motorTier) * generatedSpeed.getValue();
+        return Math.abs(Config.motorConfig.consumedEnergy.getFromTier(motorTier) * generatedSpeed.getValue());
     }
 
     public void setCapability(int capability) {
@@ -118,10 +118,10 @@ public class AbstractMotorBlockEntity extends GeneratingKineticBlockEntity {
 
         String space = "    ";
         String nest = " ";
-        tooltip.add(Component.literal(space).append("Generated Speed: ").append(String.valueOf(generatedSpeed.getValue())));
-        tooltip.add(Component.literal(space).append("Can I / Can O: ").append(String.valueOf(energyStorage.canReceive())).append(" / ").append(String.valueOf(energyStorage.canExtract())));
-        tooltip.add(Component.literal(space).append("Capacity / Current: ").append(String.valueOf(energyStorage.getMaxEnergyStored())).append(" / ").append(String.valueOf(energyStorage.getEnergyStored())));
-        tooltip.add(Component.literal(space).append("Energy Consumption: ").append(String.valueOf(calculateEnergyConsumption())));
+//        tooltip.add(Component.literal(space).append("Generated Speed: ").append(String.valueOf(generatedSpeed.getValue())));
+//        tooltip.add(Component.literal(space).append("Can I / Can O: ").append(String.valueOf(energyStorage.canReceive())).append(" / ").append(String.valueOf(energyStorage.canExtract())));
+//        tooltip.add(Component.literal(space).append("Capacity / Current: ").append(String.valueOf(energyStorage.getMaxEnergyStored())).append(" / ").append(String.valueOf(energyStorage.getEnergyStored())));
+//        tooltip.add(Component.literal(space).append("Energy Consumption: ").append(String.valueOf(calculateEnergyConsumption())));
 
         tooltip.add(Component.literal(space + "Forge Energy Capacity:").withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal(space + nest + ChatFormatting.AQUA + energyStorage.getEnergyStored() + "FE" + ChatFormatting.DARK_GRAY + " / " + energyStorage.getMaxEnergyStored() + "FE"));

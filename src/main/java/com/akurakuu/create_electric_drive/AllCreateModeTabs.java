@@ -1,5 +1,6 @@
 package com.akurakuu.create_electric_drive;
 
+import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import it.unimi.dsi.fastutil.objects.ReferenceArrayList;
 import it.unimi.dsi.fastutil.objects.ReferenceLinkedOpenHashSet;
@@ -8,15 +9,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.apache.http.config.Registry;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-import static com.akurakuu.create_electric_drive.CreateElectricDrive.MODID;
-import static com.akurakuu.create_electric_drive.CreateElectricDrive.REGISTRATE;
+import static com.akurakuu.create_electric_drive.CreateElectricDrive.*;
 
 public class AllCreateModeTabs {
     private static final DeferredRegister<CreativeModeTab> TAB_REGISTER = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
@@ -24,10 +26,10 @@ public class AllCreateModeTabs {
     // Creates a creative tab with the id "create_electric_drive:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = TAB_REGISTER.register("main",
             () -> CreativeModeTab.builder()
-                    .title(Component.translatable("itemGroup.create_electric_drive.title")) //The language key for the title of your CreativeModeTab
+                    .title(Component.translatable("itemGroup." + MODID + ".main")) //The language key for the title of your CreativeModeTab
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-                    .icon(AllItems.ADVANCED_COIL::asStack)
-                    //           .displayItems(new RegistrateDisplayItemsGenerator(true, CreateModeTab.MAIN_TAB))
+                    .icon(AllBlocks.BASIC_MOTOR::asStack)
+                    .displayItems(new RegistrateDisplayItemsGenerator(true, AllCreateModeTabs.MAIN_TAB))
                     .build());
 
     public static void register(IEventBus event) {
@@ -47,13 +49,13 @@ public class AllCreateModeTabs {
         private List<Item> collectBlocks(DeferredHolder<CreativeModeTab, CreativeModeTab> tab/*, Predicate<Item> predicate*/) {
             List<Item> items = new ReferenceArrayList<>();
 
-            for (RegistryEntry<Block, Block> block : REGISTRATE.getAll(Registries.BLOCK)) {
-                if (REGISTRATE.isInCreativeTab(block, tab)) {
-                    System.out.println("continued");
+            for (RegistryEntry<Block, Block> entry : REGISTRATE.getAll(Registries.BLOCK)) {
+                if (!CreateRegistrate.isInCreativeTab(entry, tab)) {
+                    LOGGER.warn("[Block] Registry Continued: {}", entry.getKey());
                     continue;
                 }
 
-                Item item = block.get().asItem();
+                Item item = entry.get().asItem();
 
                 if (item == Items.AIR) {
                     continue;
@@ -69,11 +71,32 @@ public class AllCreateModeTabs {
             return items;
         }
 
-        @Override
-        public void accept(CreativeModeTab.ItemDisplayParameters itemDisplayParameters, CreativeModeTab.Output output) {
-            List<Item> items = new ArrayList<>();
-//            items.addAll(collectBlocks(MAIN_TAB));
+        private List<Item> collectItems(DeferredHolder<CreativeModeTab, CreativeModeTab> tab) {
+            List<Item> items = new ReferenceArrayList<>();
 
+            for (RegistryEntry<Item, Item> entry: REGISTRATE.getAll(Registries.ITEM)) {
+                if (!CreateRegistrate.isInCreativeTab(entry, tab)) {
+                    LOGGER.warn("[Item] Registry Continued: {}", entry.getKey());
+                    continue;
+                }
+
+                Item item = entry.get();
+
+                if (item == Items.AIR) {
+                    continue;
+                }
+
+                items.add(item);
+            }
+
+            return items;
+        }
+
+        @Override
+        public void accept(CreativeModeTab.@NotNull ItemDisplayParameters itemDisplayParameters, CreativeModeTab.@NotNull Output output) {
+            List<Item> items = new ArrayList<>();
+            items.addAll(collectBlocks(MAIN_TAB));
+            items.addAll(collectItems(MAIN_TAB));
 
             for (Item item : items) {
                 output.accept(item);

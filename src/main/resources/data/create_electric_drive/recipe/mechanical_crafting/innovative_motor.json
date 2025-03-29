@@ -1,0 +1,37 @@
+{
+  "type": "create:mechanical_crafting",
+  "accept_mirrored": false,
+  "category": "misc",
+  "pattern": [
+    "  S  ",
+    "PPSPP",
+    "CI#IC",
+    "PPWPP",
+    " PPP "
+  ],
+  "key": {
+    "S": {
+      "item": "create:shaft"
+    },
+    "C": {
+      "item": "create:railway_casing"
+    },
+    "P": {
+      "item": "create:sturdy_sheet"
+    },
+    "W": {
+      "item": "create:flywheel"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "#": {
+      "item": "create_electric_drive:innovative_coil"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "create_electric_drive:innovative_motor"
+  },
+  "show_notification": false
+}

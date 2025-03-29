@@ -10,8 +10,11 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -19,9 +22,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<AbstractMotorBlockEntity> {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -93,22 +99,5 @@ public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<A
 //                ),
 //                state.getValue(FACING));
         return shape.getShape(state.getValue(FACING));
-    }
-
-    @Override
-    public InteractionResult onWrenched(BlockState state, UseOnContext context) {
-//        CreateElectricDrive.LOGGER.info("onWrenched");
-        return super.onWrenched(state, context);
-//        return InteractionResult.SUCCESS;
-    }
-
-    @Override
-    public BlockState updateAfterWrenched(BlockState newState, UseOnContext context) {
-        return super.updateAfterWrenched(newState, context);
-    }
-
-    @Override
-    public InteractionResult onSneakWrenched(BlockState state, UseOnContext context) {
-        return super.onSneakWrenched(state, context);
     }
 }
