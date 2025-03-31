@@ -1,6 +1,7 @@
 package com.akurakuu.create_electric_drive;
 
 import com.akurakuu.create_electric_drive.block.motor.*;
+import com.akurakuu.create_electric_drive.block.motor.abstractmotor.AbstractMotorRenderer;
 import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.content.kinetics.base.OrientedRotatingVisual;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
@@ -14,6 +15,7 @@ public class AllEntities {
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
             .validBlocks(AllBlocks.BASIC_MOTOR)
+            .renderer(() -> AbstractMotorRenderer::new)
             .register();
 
     public static final BlockEntityEntry<AdvancedMotorBlockEntity> ADVANCED_MOTOR = REGISTRATE
@@ -22,6 +24,7 @@ public class AllEntities {
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
             .validBlocks(AllBlocks.ADVANCED_MOTOR)
+            .renderer(() -> AbstractMotorRenderer::new)
             .register();
 
     public static final BlockEntityEntry<InnovativeMotorBlockEntity> INNOVATIVE_MOTOR = REGISTRATE
@@ -30,6 +33,7 @@ public class AllEntities {
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
             .validBlocks(AllBlocks.INNOVATIVE_MOTOR)
+            .renderer(() -> AbstractMotorRenderer::new)
             .register();
 
     public static final BlockEntityEntry<UltimateMotorBlockEntity> ULTIMATE_MOTOR = REGISTRATE
@@ -38,6 +42,7 @@ public class AllEntities {
             )
             .visual(() -> OrientedRotatingVisual.of(AllPartialModels.SHAFT_HALF), false)
             .validBlocks(AllBlocks.ULTIMATE_MOTOR)
+            .renderer(() -> AbstractMotorRenderer::new)
             .register();
 
     public static void register() {
