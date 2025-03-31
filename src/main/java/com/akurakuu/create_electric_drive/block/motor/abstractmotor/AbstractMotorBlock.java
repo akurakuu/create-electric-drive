@@ -12,6 +12,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -68,7 +69,7 @@ public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<A
 
     @Override
     public Direction.Axis getRotationAxis(BlockState state) {
-        return state.getValue(FACING).getOpposite().getAxis();
+        return state.getValue(FACING).getAxis();
     }
 
     @Override
@@ -79,6 +80,14 @@ public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<A
     @Override
     public BlockEntityType<? extends AbstractMotorBlockEntity> getBlockEntityType() {
         return null;
+    }
+
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        Direction preferred = getPreferredFacing(context);
+        if ((context.getPlayer() != null && context.getPlayer().isShiftKeyDown()) || preferred == null)
+            return super.getStateForPlacement(context);
+        return defaultBlockState().setValue(FACING, preferred);
     }
 
     @Override
