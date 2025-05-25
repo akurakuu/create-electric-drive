@@ -3,6 +3,7 @@ package com.akurakuu.create_electric_drive.block.motor.abstractmotor;
 import com.akurakuu.create_electric_drive.CreateElectricDrive;
 import com.akurakuu.create_electric_drive.ShapeUtil;
 import com.akurakuu.create_electric_drive.TierUtil;
+import com.llamalad7.mixinextras.utils.MixinExtrasLogger;
 import com.simibubi.create.content.kinetics.base.DirectionalKineticBlock;
 import com.simibubi.create.foundation.block.IBE;
 import net.minecraft.core.BlockPos;
@@ -18,6 +19,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -27,8 +29,11 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.logging.Logger;
 
 public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<AbstractMotorBlockEntity> {
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
@@ -108,5 +113,25 @@ public class AbstractMotorBlock extends DirectionalKineticBlock implements IBE<A
 //                ),
 //                state.getValue(FACING));
         return shape.getShape(state.getValue(FACING));
+    }
+
+    @Override
+    protected void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos, boolean movedByPiston) {
+
+        // レッドストーンの状態をブロックエンティティへ伝える
+        if (!level.isClientSide) {
+            boolean signal =  level.hasNeighborSignal(pos);
+//            CreateElectricDrive.LOGGER.info("isServer");
+            if (signal != state.getValue(POWERED)) {
+                CreateElectricDrive.LOGGER.info("redstone change: " + signal + " " + state.getValue(POWERED) + " " + pos);
+                BlockState blockState = Objects.requireNonNull(level.getBlockEntity(pos)).getBlockState();
+                level.setBlock(pos, blockState.setValue(POWERED, signal), 3);
+            }
+        }
+    }
+
+    @Override
+    public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
+        return true;
     }
 }
