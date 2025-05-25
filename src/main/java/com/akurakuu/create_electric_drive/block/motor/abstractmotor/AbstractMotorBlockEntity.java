@@ -30,6 +30,8 @@ import net.neoforged.neoforge.network.PacketDistributor;
 import java.util.List;
 import java.util.Objects;
 
+import static com.akurakuu.create_electric_drive.block.motor.abstractmotor.AbstractMotorBlock.POWERED;
+
 public class AbstractMotorBlockEntity extends GeneratingKineticBlockEntity {
     public static final int DEFAULT_SPEED = 16;
     public static final int MAX_SPEED = 256;
@@ -64,7 +66,7 @@ public class AbstractMotorBlockEntity extends GeneratingKineticBlockEntity {
 
     @Override
     public float getGeneratedSpeed() {
-//        if (!Block.MOTOR.has(getBlockState())) {
+//        if (Objects.requireNonNull(this.getLevel()).neighborChanged(this.getBlockPos(), )) {
 //            return 0;
 //        }
 
@@ -163,7 +165,8 @@ public class AbstractMotorBlockEntity extends GeneratingKineticBlockEntity {
             }
         }
 
-        isActive = energyStorage.getEnergyStored() > 0;
+        // エネルギーが0を超えるか、レッドストーン信号がOFFの場合はシャフトを回す
+        isActive = energyStorage.getEnergyStored() > 0 && !getBlockState().getValue(POWERED);
     }
 
     class MotorValueBox extends ValueBoxTransform.Sided {
